@@ -1,20 +1,19 @@
 function customFilterUnique(array, callback) {
-    const seen = new Set();
-    const uniqueElements = [];
+    const nameCount = new Map();
+    const uniqueNames = [];
+    array.forEach(item => {
+        const name = callback(item);
+        nameCount.set(name, (nameCount.get(name) || 0) + 1);
+    });
 
     array.forEach(item => {
-        const key = callback(item);
-        if (!seen.has(key)) {
-            seen.add(key);
-            uniqueElements.push(item);
+        const name = callback(item);
+        if (nameCount.get(name) === 1) {
+            uniqueNames.push(item.name);
         }
     });
 
-    return uniqueElements;
-}
-
-function getId(obj) {
-    return obj.id;
+    return uniqueNames;
 }
 
 module.exports = { customFilterUnique, getId };
