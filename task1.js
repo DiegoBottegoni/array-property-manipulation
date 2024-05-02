@@ -16,4 +16,4 @@ function customFilterUnique(array, callback) {
     return uniqueNames;
 }
 
-module.exports = { customFilterUnique, getId };
+module.exports = { customFilterUnique };
